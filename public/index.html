@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Website Security Checker</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <a class="navbar-brand" href="#">
+        <i class="fas fa-shield-alt me-2"></i>Website Security Checker
+      </a>
+    </div>
+  </nav>
+
+  <div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <h1 class="text-center mb-4">Check Your Website Security</h1>
+            <p class="text-center text-muted mb-4">
+              Our free tool examines your website for security issues, malware, and SSL/TLS certificate problems.
+            </p>
+            
+            <form id="securityCheckForm" class="mb-4">
+              <div class="input-group mb-3">
+                <span class="input-group-text">https://</span>
+                <input type="text" id="urlInput" class="form-control" placeholder="example.com" required>
+                <button class="btn btn-primary" type="submit">
+                  <i class="fas fa-search me-2"></i>Check
+                </button>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="includeSSL" checked>
+                <label class="form-check-label" for="includeSSL">
+                  Include SSL/TLS Check
+                </label>
+              </div>
+            </form>
+          </div>
+        </div>
+        
+        <!-- Loading spinner -->
+        <div id="loadingSpinner" class="text-center my-5 d-none">
+          <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+          <p class="mt-3">Analyzing website security. This may take a few moments...</p>
+        </div>
+        
+        <!-- Results Section -->
+        <div id="resultsSection" class="mt-4 d-none">
+          <div class="card shadow-sm mb-4">
+            <div class="card-header bg-primary text-white">
+              <h5 class="mb-0">Security Check Results</h5>
+            </div>
+            <div class="card-body">
+              <div class="row align-items-center">
+                <div class="col-md-4 text-center">
+                  <div id="securityScore" class="score-circle">
+                    <span id="scoreValue">0</span>
+                  </div>
+                  <p class="mt-2">Security Score</p>
+                </div>
+                <div class="col-md-8">
+                  <ul class="list-group list-group-flush" id="resultSummary">
+                    <!-- Summary items will be inserted here -->
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Detailed Results Accordion -->
+          <div class="accordion" id="resultsAccordion">
+            <!-- SSL Certificate -->
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#sslSection">
+                  <i class="fas fa-lock me-2"></i> SSL/TLS Certificate
+                </button>
+              </h2>
+              <div id="sslSection" class="accordion-collapse collapse show" data-bs-parent="#resultsAccordion">
+                <div class="accordion-body" id="sslDetails">
+                  <!-- SSL details will be inserted here -->
+                </div>
+              </div>
+            </div>
+            
+            <!-- Security Headers -->
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#headersSection">
+                  <i class="fas fa-code me-2"></i> Security Headers
+                </button>
+              </h2>
+              <div id="headersSection" class="accordion-collapse collapse" data-bs-parent="#resultsAccordion">
+                <div class="accordion-body" id="headersDetails">
+                  <!-- Headers details will be inserted here -->
+                </div>
+              </div>
+            </div>
+            
+            <!-- Malware Detection -->
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#malwareSection">
+                  <i class="fas fa-bug me-2"></i> Malware & Phishing Detection
+                </button>
+              </h2>
+              <div id="malwareSection" class="accordion-collapse collapse" data-bs-parent="#resultsAccordion">
+                <div class="accordion-body" id="malwareDetails">
+                  <!-- Malware details will be inserted here -->
+                </div>
+              </div>
+            </div>
+            
+            <!-- Mixed Content -->
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#mixedContentSection">
+                  <i class="fas fa-exclamation-triangle me-2"></i> Mixed Content Detection
+                </button>
+              </h2>
+              <div id="mixedContentSection" class="accordion-collapse collapse" data-bs-parent="#resultsAccordion">
+                <div class="accordion-body" id="mixedContentDetails">
+                  <!-- Mixed content details will be inserted here -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <footer class="mt-5 py-4 bg-light">
+    <div class="container text-center">
+      <p class="text-muted mb-1">&copy; 2023 Website Security Checker</p>
+      <p class="text-muted small">
+        This tool checks website security, SSL certificates, and more. 
+        Always use caution when sharing sensitive information online.
+      </p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html> 
